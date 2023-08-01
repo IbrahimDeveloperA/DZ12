@@ -6,13 +6,19 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.dz12.databinding.ItemListBinding
 
-class TaskAdapter:Adapter<TaskAdapter.TaskViewHolder>() {
+class TaskAdapter(val deleteClick:(TaskModel)->Unit):Adapter<TaskAdapter.TaskViewHolder>() {
 
     var list = mutableListOf<TaskModel>()
 
     fun addData(lists : List<TaskModel>){
+        list.clear()
         list.addAll(lists)
-        notifyItemChanged(1)
+        notifyDataSetChanged()
+    }
+
+    fun deleteData(lists: TaskModel){
+        list.remove(lists)
+        notifyItemChanged(0)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
@@ -29,6 +35,10 @@ class TaskAdapter:Adapter<TaskAdapter.TaskViewHolder>() {
         fun onBind(taskModel: TaskModel) {
             binding.tvTitle.text = taskModel.title
             binding.tvDesc.text = taskModel.description
+            itemView.setOnLongClickListener {
+                deleteClick(taskModel)
+                false
+            }
         }
 
     }

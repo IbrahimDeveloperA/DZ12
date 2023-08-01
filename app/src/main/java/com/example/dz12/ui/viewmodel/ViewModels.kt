@@ -7,13 +7,19 @@ import com.example.dz12.ui.adapter.TaskModel
 
 class ViewModels : ViewModel() {
 
-    private val list = MutableLiveData<MutableList<TaskModel>>()
-    val _list:LiveData<MutableList<TaskModel>>
-        get() = list
+    private val _list = MutableLiveData<MutableList<TaskModel>>()
+    val list:LiveData<MutableList<TaskModel>>
+        get() = _list
+
     val listTask = mutableListOf<TaskModel>()
 
     fun addTask(lists :TaskModel){
         listTask.add(lists)
-        list.value = listTask
+        _list.value = listTask
+    }
+
+    fun deleteTask(lists: TaskModel){
+        listTask.remove(lists)
+        _list.value = listTask
     }
 }
