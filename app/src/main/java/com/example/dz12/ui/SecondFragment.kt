@@ -3,7 +3,7 @@ package com.example.dz12.ui
 import com.example.dz12.R
 import com.example.dz12.core.ui.BaseFragment
 import com.example.dz12.databinding.FragmentSecondBinding
-import com.example.dz12.ui.adapter.TaskModel
+import com.example.dz12.data.TaskModel
 
 class SecondFragment : BaseFragment<FragmentSecondBinding>(R.layout.fragment_second) {
     override fun inflateViewBinding(): FragmentSecondBinding {

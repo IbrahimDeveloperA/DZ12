@@ -15,4 +15,5 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportFragmentManager.beginTransaction().replace(R.id.container, FirstFragment()).commit()
     }
+
 }
